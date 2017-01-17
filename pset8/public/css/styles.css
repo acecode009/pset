@@ -1,0 +1,449 @@
+/**
+ * styles.css
+ *
+ * Computer Science 50
+ * Problem Set 8
+ *
+ * Global CSS.
+ */
+
+/* allow map to fill viewport */
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,300,100');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.3.2/css/weather-icons.min.css');
+  
+*{
+    -webkit-transition: .5s linear ;
+    -moz-transition: .5s linear ;
+    -ms-transition: .5s linear ;
+    -o-transition: .5s linear ;
+    transition: .5s linear ;
+}      
+html, body, #map-canvas, .container-fluid
+{
+    /* height of these elements */
+    height: 100%;
+    font-family: Roboto, Arial, sans-serif;
+    /* no margin around these elements */
+    margin: 0;
+
+    /* disable scrollbars */
+    overflow: hidden;
+
+    /* no padding within these elements */
+    padding: 0;
+}
+
+/* align form to right of pan control */
+#form
+{
+    /* distance from left edge of viewport */
+    left: 80px;
+
+    /* position form "absolutely" where we want it */
+    position: absolute;
+
+    /* distance from top edge of viewport */
+    top: 45px;
+}
+
+/* stylize text box */
+
+#q
+{
+    /* override typeahead.js's transparent background */
+    background: #fff !important;
+    padding: 12px 20px 12px 40px !important;
+    /* text box's width */
+    width: 390px;
+    
+    height: 48px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    
+}
+textarea:focus, input:focus{
+    outline: none !important;
+}
+
+/* stylize places' labels */
+.label
+{
+    /* small, black text */
+    color: #000000;
+    font-family: sans-serif;
+    font-size: small;
+    font-weight: bold;
+   
+
+    /* don't let places' labels wrap onto multiple lines */
+    white-space: nowrap;
+}
+
+/* stylize info window */
+#info
+{
+    /* no margin around this element */
+    margin: 0;
+
+    /* should be at least this width */
+    min-width: 200px;
+
+    /* allow scrollbars as needed */
+    overflow: auto;
+    z-index: 10 !important;
+   
+}
+#info ul
+{
+    margin-bottom: 0;
+    list-style-type: none;
+}
+ ul li{
+    list-style-type:none !important ;
+}
+
+/* stylize typeahead.js a la http://twitter.github.io/typeahead.js/css/examples.css */
+.tt-dropdown-menu
+{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 1px;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 6px 12px;
+    border-bottom: 1px solid #ccc;
+    width: 390px;
+     color: #000 !important;
+}
+.tt-suggestion.tt-cursor {
+    background-color: #0097cf;
+    color: #fff;
+    cursor: pointer;
+}
+.tt-suggestion p {
+    margin: 0;
+}
+.glyphicon-search {
+    left: 90%;
+    position: absolute;
+    top: 19px;
+    font-size: 18px;
+    color: #ccc;
+    cursor: pointer;
+}
+.open{
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    z-index: 11;
+}
+.form-group:hover .glyphicon-search{
+    color: #3498db;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 12;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.main {
+    transition: margin-left .5s;
+    
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.weather{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    color: #fff;
+    font-weight: bold;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.weather-b{
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: block;
+    margin: auto;
+    background-image: url('https://static.pexels.com/assets/headers/bridge-large-b5e4a485ce9d42ac2e226c482fb7c326cb20c17426f60486e33d3da55e305900.jpg');
+    background-position: 100% 50%;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 80%;
+    height: 450px
+    
+    
+}
+
+.weather-content{
+    position: absolute;
+    left: 10%;
+    background: rgba(52, 73, 94,0.4);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 450px;
+    overflow: hidden;
+    z-index: 999;
+}
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.sidenavs{
+    width: 250px;
+    height: 100%;
+   
+   
+}
+.dw{
+    display: block;
+    transition: 0.3s
+}
+.city, .btn{
+    height: 45px;
+  margin: 1em 0 4em;
+  padding: 0;
+  font: 400 1rem 'roboto';
+  font-size: 28px;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: white;
+  background: transparent;
+  border: none;
+  margin-bottom: 5px;
+}
+.city {
+  float: left;
+  width: 380px;
+  margin-bottom: 5px;
+  border-bottom: solid thin white;
+  color: #E8E8E8;
+  color: rgba(255, 255, 255, 0.7);
+  
+}
+
+.city::-webkit-input-placeholder {
+  color: white;
+  opacity: 0.35;
+}
+
+.city::-moz-placeholder {
+  color: white;
+  opacity: 0.35;
+}
+
+.city:-ms-input-placeholder {
+  color: white;
+  opacity: 0.35;
+}
+
+.city:-moz-placeholder {
+  color: white;
+  opacity: 0.35;
+}
+
+.btn:focus,
+.city:focus {
+  outline: none;
+  color: white;
+}
+.btn{
+    width: 100px;
+    margin-left: 76px;
+}
+
+.weather-content li {
+  
+  padding: 20px;
+  display: inline-block;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+.icon img{
+   
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+.left{
+    width:390px;
+    height: 150px;
+    position: absolute;
+    top: 45%;
+    padding: 5px;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+   
+    
+}
+
+.last{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    left: 65%;
+    padding-top: 35px;
+    padding-left: 20px;
+    float: left;
+    color: #fff;
+    font-size:17px;
+    box-sizing: border-box;
+    text-align: left;
+    margin-top: 30px;
+    font-weight: 300;
+}
+.last span{
+    display: block;
+    width: 100%;
+    height: 25px;
+}
+.left a{
+    color: #fff;
+    text-decoration: none;
+}
+.left a:hover {
+    color: #23527c;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+.text{
+    display: inline-block;
+    float: right;
+}
+.text h1{
+     font-size: 95px;
+     margin-top: 1px;
+     margin-left: 5px;
+     color: #fff;
+     font-family: 'roboto';
+}
+.days{
+  width: 100%;
+  height: 119px;
+  position: absolute;
+  top:75%;
+  left: 0;
+  color:#fff;
+  background: rgba(189, 195, 199,.4);
+  overflow: hidden;
+  font-size: 11px;
+  text-align: center;
+   
+  
+  
+}
+.days li{
+  float: left;
+  width: 13%;
+  height: 125px;
+  margin-left: 9px;
+  margin-top: -3px;
+  border-right:1px solid white;
+  list-style-type: none;
+  
+  box-sizing:border-box;
+  text-align: center;
+}
+.days .sat{
+   border-right:0px;
+}
+.days li p{
+  margin-top: .3em;
+  
+}
+.days li span{
+  margin-left: auto;
+  
+}
+.days li img{
+    height: 40px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.cls{
+    width: 87px !important;
+    position: absolute;
+    right: 35%;
+    top: 11%; ;
+}
+
+.head{
+    position: absolute;
+    top:25%;
+    left: 8px;
+    display: block;
+    width: 350px;
+    height: 100px;
+    color: #fff;
+    padding: 15px;
+    font-size: 20px ;
+    font-weight: 300;
+}
+.text h1 sup {
+    top: -1.1em;
+    left: -18px;
+    font-size: 48%;
+}

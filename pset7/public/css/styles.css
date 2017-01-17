@@ -1,0 +1,117 @@
+/**
+ * styles.css
+ *
+ * Computer Science 50
+ * Problem Set 7
+ *
+ * Global CSS.
+ */
+/*custom fonts - Bitter, Montserrat*/
+@import url('http://fonts.googleapis.com/css?family=Montserrat|Bitter');
+.container
+{
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#top
+{
+    /* surround with whitespace */
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: #fff;
+}
+
+#top .nav
+{
+    /* center navigation pills */
+    display: inline-block;
+}
+
+#middle .form-control
+{
+    /* center form controls */
+    display: inline-block;
+    
+    /* override Bootstrap's 100% width for form controls */
+   width: auto;
+}
+#middle .sec
+{
+    margin-bottom:15px;
+    clear:right;
+    margin-left: 36.25%;
+    display: block;
+}
+
+#bottom
+{
+    /* shrink bottom's font size */
+    font-size: smaller;
+
+    /* surround with whitespace */
+    margin: 20px;
+}
+
+#middle td
+{
+    /* left-align tables' cells */
+    text-align: left ;
+}
+#red{
+  color: red !important;
+}
+ul li{
+    overflow: hidden;
+}
+ul li a {
+	font: normal 14px/28px Montserrat; 
+	color: rgb(52, 152, 219) !important;
+	 padding: 10px 15px !important;
+}
+ul li a:hover {
+	
+	background-color: transparent !important;
+}
+table tr:hover{
+    color: rgb(52, 152, 219);
+    cursor: pointer;
+    font-weight: bold;
+    -webkit-transition: .5s linear;
+    -moz-transition: .5s linear;;
+    -ms-transition:  .5s linear;
+    -o-transition:  .5s linear;
+    transition:  .5 linear;;
+}
+.card{
+    
+    border-radius:5px;
+    margin-top: 15px;
+    color: #fff !important;
+    background: rgba(52, 73, 94,1.0);
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19)
+}
+.green{
+    color: rgb(46, 204, 113) !important;
+}
+.red{
+    color:rgb(231, 76, 60);
+    
+}
+	
+
+/*.ink styles - the elements which will create the ripple effect. The size and position of these elements will be set by the JS code. Initially these elements will be scaled down to 0% and later animated to large fading circles on user click.*/
+.ink {
+	display: block; position: absolute;
+	background: hsl(180, 40%, 80%);
+	border-radius: 100%;
+	transform: scale(0);
+}
+/*animation effect*/
+.ink.animate {animation: ripple 0.65s linear;}
+@keyframes ripple {
+	/*scale the element to 250% to safely cover the entire link and fade it out*/
+	100% {opacity: 0; transform: scale(2.5);}
+}
